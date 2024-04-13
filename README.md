@@ -13,7 +13,7 @@ part of the array each recursive call considers.
 
 ## Runtime Analysis
 
-The mergesort function consists of two nexted loops. The outer loop will iterate over increasing sizes for the subarrays. We start at a size of 2 and then double the size until we react the arrays length. This is a logarithmetic time complexity.
+The mergesort function consists of two nexted loops. The outer loop will iterate over increasing sizes for the subarrays. We start at a size of 1 and then double the size until we reach the arrays length. This is a logarithmetic time complexity.
 
 The inner loop iterates over all arrays which can be made with the current size. This has a complexity of $\Theta(\frac{n}{s})$ where $s$ represents the size of the subarray. Inside each iteration we make a call to `merge()` which has a runtime complexity of $\Theta(n)$ as it can possibly merge the entire length of both arrays being merged.
 
