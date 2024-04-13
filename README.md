@@ -13,11 +13,14 @@ part of the array each recursive call considers.
 
 ## Runtime Analysis
 
-Analyse the time complexity of your implementation and give a $\Theta$ bound for
-its worst-case runtime. Add your answer, including your reasoning, to this
-markdown file.
+The mergesort function consists of two nexted loops. The outer loop will iterate over increasing sizes for the subarrays. We start at a size of 2 and then double the size until we react the arrays length. This is a logarithmetic time complexity.
+
+The inner loop iterates over all arrays which can be made with the current size. This has a complexity of $\Theta(\frac{n}{s})$ where $s$ represents the size of the subarray. Inside each iteration we make a call to `merge()` which has a runtime complexity of $\Theta(n)$ as it can possibly merge the entire length of both arrays being merged.
+
+Therefore, the total time complexity of our worst-case `mergesort` can be expressed as $\Theta(n \log n)$.
 
 ## Resources
 
 https://www.youtube.com/watch?v=bOk35XmHPKs
 https://www.youtube.com/watch?v=W2rU3dquXAc
+https://www.geeksforgeeks.org/time-and-space-complexity-analysis-of-merge-sort/
