@@ -1,19 +1,15 @@
 /**
- * Iterative and in place mergesort
+ * Iterative and in-place merge sort
  * @param {number[]} arr
  * @returns {number[]}
  */
 function mergesort(arr) {
-  // Keps track of the length since I use it ALOT.
   const n = arr.length;
 
-  // Iterate over a increasing size for each subarray
   for (let size = 1; size < n; size *= 2) {
-    // Foreach of those sizes we will iterate over all subarrays which can fit the current size.
     for (let left = 0; left < n - size; left += 2 * size) {
       const mid = left + size - 1;
       const right = Math.min(left + 2 * size - 1, n - 1);
-
       merge(arr, left, mid, right);
     }
   }
@@ -28,38 +24,29 @@ function mergesort(arr) {
  * @param {number} right
  */
 function merge(arr, left, mid, right) {
-  const leftArr = arr.slice(left, mid + 1);
-  const rightArr = arr.slice(mid + 1, right + 1);
+  let leftIndex = left;
+  let rightIndex = mid + 1;
 
-  // for the lengths since I dont like how long the lines are getting
-  const rlen = rightArr.length;
-  const llen = leftArr.length;
-
-  let i = 0;
-  let j = 0;
-  let k = left; // the default pivot
-
-  while (i < llen && j < rlen) {
-    if (leftArr[i] <= rightArr[j]) {
-      arr[k] = leftArr[i];
-      i++;
-    } else {
-      arr[k] = rightArr[j];
-      j++;
+  // While there exist left or right subarrays
+  while (leftIndex <= mid && rightIndex <= right) {
+    // Do nothing as the left is less than right
+    if (arr[leftIndex] <= arr[rightIndex]) {
+      leftIndex++;
+      continue;
     }
 
-    k++;
-  }
+    // Since the first element in left subarray is > then first element in right subarray
+    const value = arr[rightIndex]; // smallest of the two
+    let shiftIndex = rightIndex;
 
-  while (i < llen) {
-    arr[k] = leftArr[i];
-    i++;
-    k++;
-  }
+    while (shiftIndex !== leftIndex) {
+      arr[shiftIndex] = arr[shiftIndex - 1];
+      shiftIndex--;
+    }
 
-  while (j < rlen) {
-    arr[k] = rightArr[j];
-    j++;
-    k++;
+    arr[leftIndex] = value;
+    leftIndex++;
+    mid++;
+    rightIndex++;
   }
 }
