@@ -13,13 +13,16 @@ part of the array each recursive call considers.
 
 ## Runtime Analysis
 
-The outer loop iterates logarithmically, doubling the size of subarrays on each iteration until it exceeds the array's length. Therefore, the number of iterations: $\log(n)$.
+The outer loop iterates logarhythmically, doubling the `size` of subarrays on each iteration until it exceeds the array's length. Number of iterations: $\log(n)$
 
-The inner loop iterates over subarrays of size `size` formed from the current `left` index. This adds another $\frac{n}{2 \cdot \text{size}}$ iterations.
+The inner loop iterates over subarrays of size `size` formed from the current `left` index.
+Number of iterations: $\frac{n}{2 \cdot size}$. We have the half term here as the underlying subarray is now split thus 2 times the size of each split.
 
-The `merge()` function merges two sorted subarrays of potentially equal sizes, which has a time complexity of $\Theta(n)$. Therefore the total time complexity is the product of the number of iterations of the outer and inner loops multiplied by the time complexity of the merge function.
+The `merge()` function merges two _sorted_ subarrays of _mostly_ equal sizes, which has a time complexity of $\Theta(n)$.
 
-This gives a worst-case time complexity of $\Theta(\log(n)) \cdot \Theta(n)$, which simplifies to $\Theta(n \cdot \log n)$.
+The total time complexity is the product of the number of iterations of the outer and inner loops multiplied by the time complexity of the merge function:
+
+$\Theta(\log_2(n)) \cdot \frac{n}{2 \cdot size} \cdot \Theta(n)$. Since the inner loop is nested within the outer loop, we multiply their complexities. This gives us an overall worst-case runtime complexity of $\Theta(n^2 \log n)$.
 
 ## Resources
 
