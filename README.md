@@ -20,17 +20,11 @@ Increases the size of the subarrays to be merged, starting from 1 and doubling e
 For a given size, the loop iterates approximately $\frac{n}{2 \cdot size}$ times because each merge operation handles $2 \cdot size$ elements and merging the two.
 
 `Merge`:
-The most expensive operation within the merge function is the process of _shifting_ elements into a correct position. When an element from the right subarray is moved to a position in the left, all subsequent elements in the left subarray need to be shifted right to make space. This operation has a complexity of up to $\Theta(n)$ in the worst case for a single merge step, as it may involve shifting all of the array over to its new location.
+The most expensive operation within the merge function is the process of _shifting_ elements into a correct position. When an element from the right subarray is moved to a position in the left, all subsequent elements in the left subarray need to be shifted right to make space. This operation has a complexity of up to $\Theta(n)$ for each element which needs to be shifted. In the worst case for a single merge step, as it may involve shifting all of the array over to its new location. Thus the mergestep can have a worst-case complexity of $\Theta(n^2)$.
 
 The total time complexity is determined by multiplying the complexities of the outer loop, inner loop, and the merge function.
 
-`Outer Loop`: Runs $\log(n)$ times.
-
-`Inner Loop`: For each outer loop iteration, merges are performed $\frac{n}{2 \cdot size}$ times.
-
-`Merge Function`: Each merge can involve up to $\Theta(n)$ operations due to shifting.
-
-Therefore the overall worst-case runtime complexity of my ijmplimentation of is $\Theta(n \cdot \log(n))$.
+Therefore the overall worst-case runtime complexity of my implimentation of is $\Theta(n^2 \cdot \log(n))$.
 
 ## Resources
 
